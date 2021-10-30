@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="Actividad1_PSP/src"/>
+	<classpathentry kind="src" path="Actividad2_PSP"/>
+	<classpathentry kind="output" path="Actividad1_PSP/bin"/>
+</classpath>
