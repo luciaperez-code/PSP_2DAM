@@ -8,6 +8,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.Normalizer;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
 
@@ -16,14 +18,14 @@ import org.springframework.stereotype.Component;
 public class Fichero {
 
 	private final String NOMBRE_FICHERO = "memoria.txt";
-	private String[]listaFrases = new String[40];
+	//private String[]listaFrases = new String[40];
 	private File fichero;
 	public Fichero() {
 		fichero = new File(NOMBRE_FICHERO);
 		if(!fichero.exists()) {
 			try {
 				fichero.createNewFile();
-				System.out.println("El fichero ha sido creado.");
+				System.out.println("Fichero creado con éxito");
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -36,32 +38,32 @@ public class Fichero {
 	 * @return devuelve un array con todas las frases leidas
 	 * @throws FileNotFoundException
 	 */
-	public String[] leerFichero() {
+	public List<String> leerFichero() {
+		List<String> listaFrases = new ArrayList();
+
 		try(FileReader fr = new FileReader(NOMBRE_FICHERO);
 				 BufferedReader br = new BufferedReader(fr);) {
 				String frase = br.readLine();
 				int i = 0;
-				listaFrases[i] = frase;
+				
+				
 				while(frase != null){
-					System.out.println("Frase del fichero: " + frase);
-					i++;
+					listaFrases.add(frase);
 					frase = br.readLine();
-					listaFrases[i] = frase;
-					
-				}
+					}
+					System.out.println("Fichero leido correctamente");
 			
 			return listaFrases;
-			
+		
 		}catch ( IOException ioe) {
 			ioe.printStackTrace();
 			return null;
 		} 
 	}
-	
 	/**
-	 * Método que escribe la frase que pasamos como parámetro en el fichero
+	 * MÃ©todo que escribe la frase que pasamos como parÃ¡metro en el fichero
 	 * @param frase Frase que recibe para escrbirla
-	 * @return Devuelve true si pudo escrbir en el fichero y false si ocurrió un error
+	 * @return Devuelve true si pudo escrbir en el fichero y false si ocurriÃ³ un error
 	 * @throws FileNotFoundException
 	 */
 	public boolean escribir(String frase) throws FileNotFoundException {
@@ -80,9 +82,9 @@ public class Fichero {
 		}
 	}
 	/**
-	 * Método que cuenta el número de frases en las que aparece una palabra 
+	 * MÃ©todo que cuenta el nÃºmero de frases en las que aparece una palabra 
 	 * @param palabra la palabra a buscar
-	 * @return devuelve el número de frases en las que aparece dicha palabra. También devuelve 0 si hay una excepción
+	 * @return devuelve el nÃºmero de frases en las que aparece dicha palabra. TambiÃ©n devuelve 0 si hay una excepciÃ³n
 	 */
 	public int contar(String palabra) {
 		try(FileReader fr = new FileReader(fichero);
@@ -92,7 +94,7 @@ public class Fichero {
 			int contador=0;
 			
 			
-			//Se ejecuta mientras haya una línea que leer
+			//Se ejecuta mientras haya una lÃ­nea que leer
 			while((linea=br.readLine()) != null) {
 				
 				String sinMayusculas = linea.toLowerCase();
@@ -120,6 +122,12 @@ public class Fichero {
 	
 	
 }
+
+
+
+
+
+
 
 
 
