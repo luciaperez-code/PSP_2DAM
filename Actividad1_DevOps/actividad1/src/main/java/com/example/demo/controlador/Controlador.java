@@ -1,6 +1,7 @@
 package com.example.demo.controlador;
 
 import java.io.IOException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,13 +22,13 @@ public class Controlador {
 	private Fichero fichero;
 	
 	
-	//Método Get de prueba
+	//MÃ©todo Get de prueba
 	@GetMapping (path= "fichero", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<String[]> listarFrase(){
-		String[] frase = null;
+	public ResponseEntity<List<String>> listarFrase(){
+		List<String> frase = null;
 		frase= fichero.leerFichero();
 		
-		return new ResponseEntity<String[]>(frase, HttpStatus.OK);
+		return new ResponseEntity<List<String>>(frase, HttpStatus.OK);
 	}
 	
 	@PostMapping(path="fichero", consumes= MediaType.APPLICATION_JSON_VALUE,
@@ -56,6 +57,15 @@ public class Controlador {
 			
 	}
 }
+
+
+
+
+
+
+
+
+
 
 
 
